@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebuah Cerita Kecil</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111215;
+            font-family: 'Georgia', serif;
+            color: #f5f5f7;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 550px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #e2e2e5;
+        }
+
+        .highlight {
+            color: #e5989b;
+            font-style: italic;
+        }
+
+        .btn {
+            background-color: transparent;
+            border: 1px solid #b58285;
+            color: #b58285;
+            padding: 12px 28px;
+            font-size: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'sans-serif';
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #b58285;
+            color: #111215;
+            box-shadow: 0 0 15px rgba(181, 130, 133, 0.4);
+        }
+
+        .heart-icon {
+            font-size: 40px;
+            color: #e5989b;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            to {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- KEJUTAN 1: Pembuka -->
+        <div class="slide active" id="slide1">
+            <p>Hai... <br>Aku buat ini khusus buat kamu. Gak ada alasan penting, cuma mau menyampaikan sesuatu yang
+                mungkin jarang terucap.</p>
+            <button class="btn" onclick="nextSlide(2)">Mau baca sebentar?</button>
+        </div>
+
+        <!-- KEJUTAN 2: Refleksi Rasa Bersyukur -->
+        <div class="slide" id="slide2">
+            <p>Dari banyaknya hari yang melelahkan dan hiruk-pikuk dunia yang kadang bising...</p>
+            <button class="btn" onclick="nextSlide(3)">Lanjut...</button>
+        </div>
+
+        <!-- KEJUTAN 3: Pengakuan Tulus -->
+        <div class="slide" id="slide3">
+            <p>Menemukan kamu, bisa berjalan di sampingmu, dan berbagi tawa bersamamu adalah <span
+                    class="highlight">bagian terbaik</span> yang selalu aku syukuri setiap hari.</p>
+            <button class="btn" onclick="nextSlide(4)">Ada satu hal lagi...</button>
+        </div>
+
+        <!-- KEJUTAN 4: Sentuhan Emosional -->
+        <div class="slide" id="slide4">
+            <p>Terima kasih, ya. Terima kasih karena sudah menjadi tempat pulang yang paling menenangkan. Terima kasih
+                karena kehadiranmu selalu membuat segalanya terasa lebih mudah.</p>
+            <button class="btn" onclick="nextSlide(5)">Terakhir dari aku...</button>
+        </div>
+
+        <!-- KEJUTAN 5: Penutup & Harapan -->
+        <div class="slide" id="slide5">
+            <div class="heart-icon">❤️</div>
+            <p>Semoga di hari-hari yang akan datang, kita tetap menjadi tim yang hebat, saling menguatkan, dan terus
+                berjalan bersama. <br><br><span class="highlight">Aku beruntung punya kamu.</span></p>
+            <button class="btn" onclick="pesanAkhir()">Selesai ✨</button>
+        </div>
+
+    </div>
+
+    <script>
+        function nextSlide(slideIndex) {
+            // Sembunyikan semua slide yang sedang aktif
+            const currentActive = document.querySelector('.slide.active');
+            if (currentActive) {
+                currentActive.classList.remove('active');
+                // Beri sedikit jeda agar transisi hilangnya halus sebelum slide baru muncul
+                setTimeout(() => {
+                    currentActive.style.display = 'none';
+
+                    const nextSlideElem = document.getElementById('slide' + slideIndex);
+                    nextSlideElem.style.display = 'block';
+                    // Jeda mikro agar animasi pengetikan/kemunculan CSS berjalan
+                    setTimeout(() => {
+                        nextSlideElem.classList.add('active');
+                    }, 50);
+                }, 400);
+            }
+        }
+
+        function pesanAkhir() {
+            alert("Terima kasih sudah membaca sampai akhir. Hari ini dan seterusnya, jaga kesehatan ya. Aku di sini selalu mendukungmu. ❤️");
+        }
+    </script>
+
+</body>
+
+</html>
